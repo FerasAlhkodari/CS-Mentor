@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# CS Mentor Project 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Overview**
+CS Mentor is an AI-powered chatbot system designed to answer theoretical computer science questions. This project is currently in **Phase 1**, focusing on setting up the foundational architecture for both the backend and frontend.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## **Current Progress (Phase 1)**
 
-### `npm start`
+### 1. **Backend Setup**
+- **Framework:** FastAPI
+- **Features:**
+  - Integrated Hugging Face QA model for question answering.
+  - Configured API routes:
+    - `GET /`: Welcome route.
+    - `GET /health`: Health check endpoint.
+    - `POST /ask`: Accepts a question and returns an AI-generated response.
+  - Comprehensive error handling and fallback responses.
+- **Testing:**
+  - Successfully implemented 13 unit and integration tests using Pytest.
+- **Technologies Used:**
+  - FastAPI
+  - Hugging Face Transformers
+  - Python 3.12
+  - Pytest for testing
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. **Frontend Setup**
+- **Framework:** React.js
+- **Features:**
+  - Clean and modern UI for the chatbot.
+  - Basic chat interface for user input and response display.
+  - Responsive design, inspired by ChatGPT.
+- **Current Structure:**
+  - Main Components:
+    - `App`: Manages global state and structure.
+    - `ChatBox`: Displays messages.
+    - `InputBox`: Handles user input.
+  - Basic styles applied with CSS.
+- **Technologies Used:**
+  - React.js
+  - CSS for styling
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **Next Steps (Future Phases)**
 
-### `npm run build`
+### **Phase 2: API Integration**
+- Connect the frontend with the backend API.
+- Implement message flow for the chat interface:
+  - Send user queries to the API.
+  - Display responses dynamically.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **Phase 3: UI/UX Enhancements**
+- Improve the chat interface:
+  - Add features like chat history, loading indicators, and enhanced styling.
+- Implement user authentication for personalized experiences.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Phase 4: Persistent Storage**
+- Integrate a database for storing user queries and responses.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## **Setup Instructions**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Backend**
+1. Navigate to the backend folder:
+   ```bash
+   cd backend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Run the server:
+   ```bash
+   uvicorn app:app --reload
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Access the API at `http://localhost:8000`.
 
-## Learn More
+Frontend
+Navigate to the frontend folder and run the following commands:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. cd frontend
+2. npm install
+3. npm start
+4. Access the frontend at `http://localhost:3000`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributors
+Feras Alkhodari
