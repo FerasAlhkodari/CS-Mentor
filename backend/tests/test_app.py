@@ -1,23 +1,17 @@
 from fastapi.testclient import TestClient
-import sys
-import os
-from pathlib import Path
-
-# Add root directory to Python path
-backend_dir = Path(__file__).parent.parent
-sys.path.insert(0, str(backend_dir))
-
-from app import app
 import pytest
+from app import app
 
 client = TestClient(app)
 
 def test_health_check():
+    """Test health check endpoint"""
     response = client.get("/health")
     assert response.status_code == 200
     assert response.json() == {"status": "healthy"}
 
 def test_ask_question_success():
+    """Test successful question answering"""
     question = {"question": "What are algorithms?"}
     response = client.post("/ask", json=question)
     assert response.status_code == 200
@@ -34,6 +28,7 @@ def test_ask_question_success():
             "The model is not confident enough to provide an accurate answer."
 
 def test_low_confidence_response():
+    """Test handling of questions with low confidence"""
     question = {"question": "What is the meaning of life?"}
     response = client.post("/ask", json=question)
     assert response.status_code == 200
@@ -45,9 +40,10 @@ def test_low_confidence_response():
         "The model is not confident enough to provide an accurate answer."
 
 def test_empty_question():
+    """Test handling of empty questions"""
     question = {"question": ""}
     response = client.post("/ask", json=question)
-    assert response.status_code == 500
+    assert response.status_code == 400
     assert "detail" in response.json()
 
 @pytest.mark.parametrize("invalid_input", [
@@ -56,5 +52,6 @@ def test_empty_question():
     {"question": None},
 ])
 def test_invalid_input(invalid_input):
+    """Test handling of invalid input data"""
     response = client.post("/ask", json=invalid_input)
-    assert response.status_code in [422, 500]
+    assert response.status_code in [400, 500]

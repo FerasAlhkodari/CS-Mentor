@@ -1,17 +1,52 @@
 import React, { useState } from 'react';
 import './App.css';
 
+// Load environment variables
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (input.trim()) {
-      setMessages([...messages, { text: input, sender: 'user' }]);
-      setInput('');
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${BACKEND_URL}/ask`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: input }),
+        });
+
+        const data = await response.json();
+        
+        setMessages([
+          ...messages, 
+          { text: input, sender: 'user' }, 
+          { 
+            text: data.data.answer || 'حدث خطأ أثناء المعالجة', 
+            sender: 'bot',
+            confidence: data.data.confidence
+          }
+        ]);
+        setInput('');
+      } catch (error) {
+        console.error("Error:", error);
+        setMessages([
+          ...messages,
+          { text: input, sender: 'user' },
+          { text: 'عذراً، حدث خطأ في الاتصال', sender: 'bot' }
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
+  // إرسال الرسالة عند الضغط على Enter
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSendMessage();

@@ -2,6 +2,7 @@ import pytest
 import sys
 import os
 from pathlib import Path
+from model import FileNotFoundError, InvalidDataError  
 
 # Add root directory to Python path
 backend_dir = Path(__file__).parent.parent
@@ -11,21 +12,24 @@ from model import QAModel
 
 @pytest.fixture
 def qa_model():
+    """Initialize QA model for testing"""
     return QAModel()
 
 def test_model_initialization(qa_model):
-    assert qa_model.model is not None
-    assert qa_model.context is not None
+    """Test model initialization and data loading"""
+    assert qa_model.qa_data is not None
+    assert len(qa_model.qa_data) > 0
 
 def test_get_answer(qa_model):
+    """Test answer retrieval with valid question"""
     question = "What are algorithms?"
     result = qa_model.get_answer(question)
     
     # Verify result structure
     assert isinstance(result, dict)
-    assert all(key in result for key in ["answer", "confidence", "context_used"])
+    assert all(key in result for key in ["answer", "confidence"])
     
-    # Verify the answer contains expected keywords
+    # Verify answer content
     answer = result["answer"].lower()
     expected_keywords = ["steps", "process", "rules", "problem", "solution"]
     matching_keywords = [keyword for keyword in expected_keywords if keyword in answer]
@@ -33,25 +37,18 @@ def test_get_answer(qa_model):
         f"Answer '{answer}' should contain at least one of: {expected_keywords} or have low confidence handling."
 
 def test_empty_question(qa_model):
+    """Test handling of empty question"""
     with pytest.raises(ValueError, match="Question cannot be empty"):
         qa_model.get_answer("")
 
 def test_missing_context_file(monkeypatch, tmp_path):
-    monkeypatch.chdir(tmp_path)  # Change to temp directory where context.txt doesn't exist
-    with pytest.raises(FileNotFoundError, match="context.txt file is missing"):
+    """Test handling of missing intents.json file"""
+    monkeypatch.chdir(tmp_path)
+    with pytest.raises(FileNotFoundError, match=r"intents.json file is missing in path: .*"):
         QAModel()
 
-def test_empty_context_file(tmp_path):
-    # Create empty context.txt file
-    context_path = tmp_path / "context.txt"
-    context_path.write_text("")
-    
-    with pytest.MonkeyPatch().context() as m:
-        m.chdir(tmp_path)
-        with pytest.raises(ValueError, match="context.txt file is empty"):
-            QAModel()
-
 def test_answer_confidence(qa_model):
+    """Test confidence score handling"""
     question = "What are algorithms?"
     result = qa_model.get_answer(question)
     

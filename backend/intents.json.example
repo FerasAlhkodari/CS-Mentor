@@ -1,0 +1,15 @@
+{
+    "intents": [
+        {
+            "tag": "algorithms",
+            "patterns": [
+                "What are algorithms?",
+                "Define algorithm",
+                "Explain algorithms"
+            ],
+            "responses": [
+                "An algorithm is a step-by-step procedure or formula for solving a problem. It is a set of precise instructions that specify how to perform a computation or solve a problem."
+            ]
+        }
+    ]
+} 

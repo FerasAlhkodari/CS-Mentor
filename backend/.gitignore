@@ -1,0 +1,19 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data files
+intents.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
