@@ -25,14 +25,15 @@ app = FastAPI(
 # CORS Configuration
 cors_origins = os.getenv("CORS_ORIGINS", "").split(",")
 
-# Setup CORS with specific origins
+# Setup CORS with specific origins from .env
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,
+    allow_origins=cors_origins,  # Load origins from .env file
     allow_credentials=True,
-    allow_methods=["GET", "POST"],  # Specify allowed methods
-    allow_headers=["Content-Type", "Authorization"],  # Specify allowed headers
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type", "Authorization"],
 )
+
 
 # Initialize QA model
 qa_model = QAModel(intents_path="intents.json")
