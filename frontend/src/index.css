@@ -1,11 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  margin: 0;
-  font-family: 'Roboto', Arial, sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+  direction: rtl;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* تأثيرات انتقالية سلسة */
+.dark-transition {
+  transition: all 0.5s ease-in-out;
 }
+
+/* تحسين مظهر الأيقونات */
+.dark-mode-icon {
+  display: inline-block;
+  transform-origin: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* تأثير التدوير عند التحويم */
+button:hover .dark-mode-icon {
+  transform: rotate(360deg);
+}
+
+/* تأثير النبض عند النقر */
+button:active .dark-mode-icon {
+  transform: scale(0.9);
+}
+
+/* تأثير الظل المتحرك */
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0px); }
+}
+
+button:hover {
+  animation: floating 2s ease-in-out infinite;
+} 

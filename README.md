@@ -1,97 +1,74 @@
-# CS Mentor Backend - Progress Report 🚀
+# CS Mentor Frontend - Progress Report 🎨
 
-## **Current Phase: Backend Development for the Intelligent Chat System**
+## **Current Phase: Frontend Development & UI Implementation**
 ### **Overview:**
-This phase involves building a robust **FastAPI**-based backend that processes Computer Science-related questions and returns accurate answers. The system integrates an **AI-powered model** utilizing **Pattern Matching** and text similarity techniques.
+This phase involved designing and implementing a dynamic and user-friendly **React.js** frontend for the CS Mentor AI system. The frontend communicates seamlessly with the backend to provide a smooth chat experience for users, enabling them to ask theoretical Computer Science-related questions and receive AI-generated answers.
 
 ---
 
 ## **What Has Been Completed:**
 
-### 1. **API Endpoints Development:**
-- **GET /health**: Health check endpoint to verify API status.
-- **POST /ask**: Endpoint to process user questions and provide relevant answers.
+### 1. **Chat Interface Design:**
+- Developed a responsive **ChatBox** for displaying messages between the user and the AI.
+- Added dynamic status messages:
+  - **"AI is thinking now..."**
+  - **"AI is typing now..."**
+- Ensured smooth transitions and animations to enhance user experience.
 
-### 2. **AI Model (QAModel):**
-- Developed a flexible model that reads intents and responses from **intents.json**.
-- Implements **text cleaning** and **similarity scoring** (Jaccard + Sequence Similarity) to match questions with predefined patterns.
-- Returns responses with confidence scores based on similarity thresholds.
+### 2. **Session Management:**
+- Implemented the ability to:
+  - Create new sessions via the **"New Chat"** button.
+  - Switch between active sessions.
+  - Restore deleted sessions from the **History** page.
+- Provided functionality to delete sessions and clear the entire history.
 
-### 3. **Error Handling and Request Validation:**
-- **400 Bad Request**: For invalid or empty inputs.
-- **422 Unprocessable Entity**: For validation errors in the payload.
-- **500 Internal Server Error**: For unexpected server errors.
-- Implemented custom exception handlers for cleaner error responses.
+### 3. **Auto Save Feature:**
+- Added a toggle button to enable/disable automatic session saving:
+  - **Enabled**: All session data is saved locally for future access.
+  - **Disabled**: No data is saved after the browser is closed.
 
-### 4. **CORS Configuration:**
-- Enabled **Cross-Origin Resource Sharing (CORS)** to allow communication between the **React Frontend** and the **FastAPI Backend**.
-- Configured trusted origins for **localhost** (development) and production domains.
+### 4. **Clear History:**
+- Implemented a "Clear History" feature:
+  - Deletes all active and deleted sessions.
+  - Displays a system message confirming the successful clearing of history.
 
-### 5. **Comprehensive Testing:**
-- Wrote unit tests using **pytest** to verify:
-  - Endpoint responses.
-  - Handling of empty, invalid, and valid questions.
-  - Model behavior with missing or malformed **intents.json** files.
-- Ensured all tests pass successfully.
+### 5. **Dark/Light Mode:**
+- Designed a **toggle button** to switch between dark and light themes dynamically.
+- Ensured all components adapt seamlessly to the selected theme.
 
-### 6. **Security Enhancements:**
-- Implemented a **.env** file to hide sensitive configurations, such as file paths and future API keys.
-- Updated **.gitignore** to exclude the `.env` file and other temporary files.
+### 6. **Help Page (Tutorial):**
+- Created a comprehensive **Help page** accessible via the Sidebar:
+  - Explains how to use the application effectively.
+  - Provides examples of how to ask questions to the AI for optimal responses.
+  - Highlights the AI's capabilities and limitations.
+
+### 7. **Error Handling:**
+- Added meaningful error messages for:
+  - Connection issues with the backend.
+  - Invalid or unprocessable user inputs.
+- Ensured that users are informed when the AI cannot process a question.
 
 ---
 
 ## **Current Results:**
-✅ **The API is fully operational** and handles user questions seamlessly.  
-✅ The **QAModel** retrieves answers with confidence scoring and appropriate fallback responses.  
-✅ The backend successfully connects to the **React Frontend** for testing.  
-✅ All unit tests using **pytest** have passed successfully.
+✅ A fully responsive and interactive **frontend** has been developed.  
+✅ The **ChatBox** dynamically displays user messages, AI responses, and status updates.  
+✅ **Session Management** is functional, including saving, restoring, and deleting sessions.  
+✅ The **Help Page** provides a clear tutorial for using the application.  
+✅ The application integrates seamlessly with the backend.
 
 ---
 
 ## **Next Steps:**
-1. Enhance the **React Frontend** with improved UI/UX.
-2. Expand the model's accuracy by adding more patterns and training data.
-3. Deploy the system on cloud platforms like **Heroku** or **Vercel**.
-4. Add detailed documentation on backend-frontend integration and deployment.
+1. **Integration Testing:** Verify smooth communication between the frontend and backend.
+2. **Performance Optimization:** Optimize frontend performance for faster load times.
+3. **Cloud Deployment:** Deploy the application using platforms like **Netlify** or **Vercel**.
 
 ---
 
 ## **How to Run the Project:**
 
-### **Backend Setup (FastAPI):**
-1. Install dependencies:   ```bash
-   cd backend
-   pip install -r requirements.txt   ```
-
-2. Create `.env` file:   ```env
-   INTENTS_FILE_PATH=intents.json
-   CORS_ORIGINS=http://localhost:3000,http://localhost:8000
-   SECRET_KEY=your-super-secure-key   ```
-
-3. Run the server:   ```bash
-   uvicorn app:app --reload   ```
-
-4. Run tests:   ```bash
-   pytest tests/   ```
-
 ### **Frontend Setup (React):**
-1. Install dependencies:   ```bash
-   cd frontend
-   npm install   ```
-
-2. Create `.env` file:   ```env
-   REACT_APP_BACKEND_URL=http://127.0.0.1:8000
-   REACT_APP_API_KEY=your-secure-api-key   ```
-
-3. Start the development server:   ```bash
-   npm start   ```
-
----
-
-## **API Documentation:**
-- Access the interactive API documentation at: `http://localhost:8000/docs`
-- Alternative documentation format at: `http://localhost:8000/redoc`
-
----
-
-**Note:** Replace placeholders in `.env` with your actual keys and values in a secure manner.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo-name/cs-mentor-frontend.git
