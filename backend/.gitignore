@@ -6,8 +6,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Data files
-intents.json
 
 # IDE
 .vscode/
