@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/CS-Mentor/static/css/main.02c3a2c5.css",
+    "main.js": "/CS-Mentor/static/js/main.9734aa3a.js",
+    "index.html": "/CS-Mentor/index.html",
+    "main.02c3a2c5.css.map": "/CS-Mentor/static/css/main.02c3a2c5.css.map",
+    "main.9734aa3a.js.map": "/CS-Mentor/static/js/main.9734aa3a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.02c3a2c5.css",
+    "static/js/main.9734aa3a.js"
+  ]
+}
